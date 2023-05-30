@@ -4,18 +4,22 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
-import { ShowComplete, addTodo, completeTodo, showAll } from "./redux/actions";
+import { addTodo } from "./redux/actions";
 
 // Store의 state가 변경되면 subscribe함수 내부의 함수가 호출됨.
 // It returns unsubscribe()
-store.subscribe(() => {
+const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(addTodo("dinner"));
-store.dispatch(completeTodo(0));
-store.dispatch(ShowComplete());
-store.dispatch(showAll());
+// console.log(store);
+store.dispatch(addTodo("coding"));
+store.dispatch(addTodo("working"));
+store.dispatch(addTodo("playing"));
+unsubscribe(); // State in Store is changed by the codes below. But not printed out on console by unsubscribe.
+store.dispatch(addTodo("coding"));
+store.dispatch(addTodo("working"));
+store.dispatch(addTodo("playing"));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
