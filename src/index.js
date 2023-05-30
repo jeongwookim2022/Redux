@@ -1,10 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import store from "./redux/store";
+import { addTodo } from "./redux/actions";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Store의 state가 변경되면 subscribe함수 내부의 함수가 호출됨.
+const unsubscribe = store.subscribe(() => {
+  console.log(store.getState());
+});
+
+// console.log(store);
+store.dispatch(addTodo("coding"));
+store.dispatch(addTodo("working"));
+store.dispatch(addTodo("playing"));
+unsubscribe(); // State in Store is changed by the codes below. But not printed out on console by unsubscribe.
+store.dispatch(addTodo("coding"));
+store.dispatch(addTodo("working"));
+store.dispatch(addTodo("playing"));
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
