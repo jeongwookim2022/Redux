@@ -1,6 +1,6 @@
 import { legacy_createStore as createStore } from "redux";
-import { todoApp } from "./reducers";
+import REDUCER from "./reducers/reducer";
 
-const store = createStore(todoApp);
+const store = createStore(REDUCER);
 
 export default store;
