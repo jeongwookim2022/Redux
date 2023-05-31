@@ -3,7 +3,7 @@ import { ADD_TODO, COMPLETE_TODO } from "../actions";
 const initialState = [];
 export default function todosReducer(prevState = initialState, action) {
   if (action.type === ADD_TODO) {
-    return [...prevState, { todo: action.todo, done: false }]; // overwirte 'todos'
+    return [...prevState, { todo: action.todo, done: false }];
   }
 
   if (action.type === COMPLETE_TODO) {
