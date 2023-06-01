@@ -1,10 +1,8 @@
 import { useContext, useRef } from "react";
 import { addTodo } from "../redux/actions";
-import ReduxContext from "../contexts/ReduxContext";
+import { connect } from "react-redux";
 
-export default function TodoForm() {
-  const store = useContext(ReduxContext);
-
+function TodoForm({ add }) {
   const inputRef = useRef();
   return (
     <div>
@@ -14,6 +12,17 @@ export default function TodoForm() {
   );
 
   function click() {
-    store.dispatch(addTodo(inputRef.current.value));
+    add(inputRef.current.value);
   }
 }
+
+export default connect(
+  //mapStateToProps
+  (state) => ({}),
+  // mapDispatchToProps
+  (dispatch) => ({
+    add: (todo) => {
+      dispatch(addTodo(todo));
+    },
+  })
+)(TodoForm);
