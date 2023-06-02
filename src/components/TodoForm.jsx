@@ -1,8 +1,6 @@
-import { useContext, useRef } from "react";
-import { addTodo } from "../redux/actions";
-import { connect } from "react-redux";
+import { useRef } from "react";
 
-function TodoForm({ add }) {
+export default function TodoForm({ add }) {
   const inputRef = useRef();
   return (
     <div>
@@ -15,14 +13,3 @@ function TodoForm({ add }) {
     add(inputRef.current.value);
   }
 }
-
-export default connect(
-  //mapStateToProps
-  (state) => ({}),
-  // mapDispatchToProps
-  (dispatch) => ({
-    add: (todo) => {
-      dispatch(addTodo(todo));
-    },
-  })
-)(TodoForm);
